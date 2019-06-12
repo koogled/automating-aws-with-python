@@ -7,6 +7,7 @@ pythonBucket = s3.create_bucket(Bucket='acg-python-automation-2', CreateBucketCo
 
 session.region_name
 
+/*
 try:
     newBucket = s3.create_bucket(Bucket='acg-python-automation-2', CreateBucketConfiguration={'LocationConstraint' : session.region_name })
 except InvalidLocationConstraint as e:
@@ -18,6 +19,9 @@ except:
     print( e )
 
 newBucket.upload_file( 'index.html', 'index.html', ExtraArgs={'ContentType' : 'text/html'} )
+*/
+
+newBucket = s3.create_bucket(Bucket='acg-python-automation-2' )
 
 
 policy = """
@@ -35,6 +39,7 @@ policy = """
 }
 """ % newBucket.name
 policy = policy.strip()
+pol = pythonBucket.Policy()
 pol.put(Policy=policy)
 
 ws = pythonBucket.Website()
