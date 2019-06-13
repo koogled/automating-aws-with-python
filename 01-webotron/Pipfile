@@ -5,6 +5,10 @@ verify_ssl = true
 
 [dev-packages]
 ipython = "*"
+pycodestyle = "*"
+pydocstyle = "*"
+pylint = "*"
+pyflakes = "*"
 
 [packages]
 boto3 = "*"
