@@ -19,15 +19,22 @@ import click
 
 from bucket import BucketManager
 
-
-SESSION = boto3.Session(profile_name='python-automation')
-# S3 = SESSION.resource('s3')
-bucket_manager = BucketManager(SESSION)
-
+SESSION = None
+bucket_manager = None
 
 @click.group()
-def cli():
+@click.option('--profile', default=None,
+    help="Use a given AWS profile.")
+def cli(profile):
     """Webotron deploys websites to AWS."""
+    global SESSION, bucket_manager
+
+    session_cfg = {}
+    if profile:
+        session_cfg['profile_name'] = profile
+
+    SESSION = boto3.Session(**session_cfg)
+    bucket_manager = BucketManager(SESSION)
 
 
 @cli.command('list-buckets')
