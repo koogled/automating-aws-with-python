@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#webotron files
+ipyton-sess-20190612-a.py
+Pipfile
+Pipfile.lock
+
